@@ -15,7 +15,7 @@ class AuthController {
       const userLogged = new UserLogged({ ...user.get(), token });
       res.status(200).json(userLogged);
     } catch (error) {
-      res.status(401).json({ error: "Invalid credentials" });
+      res.status(401).json({ error: `${error}` });
     }
   }
 }

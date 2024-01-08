@@ -16,8 +16,7 @@ class UserController {
       const userLogged = new UserCreated(user);
       return res.status(201).json(userLogged);
     } catch (error) {
-      console.error("Error on create user:", error);
-      return res.status(500).json({ error: `Internal Server Error ${error}` });
+      return res.status(500).json({ error: `${error}` });
     }
   }
 }
