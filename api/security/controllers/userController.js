@@ -1,4 +1,4 @@
-const UserLogged = require("../serializers/userSerializers");
+const { UserCreated } = require("../serializers/userSerializers");
 const userService = require("../services/userService");
 const { validationResult } = require("express-validator");
 
@@ -13,7 +13,7 @@ class UserController {
       const { email, password, fullName } = req.body;
 
       const user = await userService.createUser(email, password, fullName);
-      const userLogged = new UserLogged(user);
+      const userLogged = new UserCreated(user);
       return res.status(201).json(userLogged);
     } catch (error) {
       console.error("Error on create user:", error);

@@ -1,4 +1,4 @@
-class UserLogged {
+class UserCreated {
   constructor({ id, email, fullName, createdAt, updatedAt }) {
     this.id = id;
     this.email = email;
@@ -7,4 +7,15 @@ class UserLogged {
     this.updatedAt = updatedAt;
   }
 }
-module.exports = UserLogged;
+
+class UserLogged extends UserCreated {
+  constructor({ id, email, fullName, createdAt, updatedAt, token }) {
+    super({ id, email, fullName, createdAt, updatedAt });
+    this.token = token;
+  }
+}
+
+module.exports = {
+  UserCreated,
+  UserLogged,
+};
