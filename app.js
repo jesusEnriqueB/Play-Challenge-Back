@@ -1,11 +1,11 @@
 require("dotenv").config();
-const routes = require("./api/routes")
+const routes = require("./api/routes");
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./api/db/index");
 
 const app = express();
-const port = 3006;
+const port = process.env.PORT || 3006;
 
 app.use(bodyParser.json());
 
@@ -30,3 +30,5 @@ db.sequelize.sync().then(() => {
     console.log(`Server run on http://localhost:${port}`);
   });
 });
+
+module.exports = app;
