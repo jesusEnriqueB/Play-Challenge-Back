@@ -29,6 +29,19 @@ class UserService {
 
     return newUser.get();
   }
+
+  async updatePassword(userId, newPassword) {
+    const user = await User.findByPk(userId);
+
+    if (!user) {
+      throw new Error("Invalid or expired reset token");
+    }
+    const hashedPassword = await bcrypt.hash(newPassword, 10);
+    await User.update(
+      { password: hashedPassword },
+      { where: { id: userId } }
+    );
+  }
 }
 
 module.exports = new UserService();

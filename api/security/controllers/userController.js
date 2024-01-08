@@ -14,7 +14,7 @@ class UserController {
 
       const user = await userService.createUser(email, password, fullName);
       const userLogged = new UserCreated(user);
-      return res.status(201).json(userLogged);
+      return res.status(200).json(userLogged);
     } catch (error) {
       return res.status(500).json({ error: `${error}` });
     }
