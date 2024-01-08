@@ -1,4 +1,5 @@
 require("dotenv").config();
+const routes = require("./api/routes")
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./api/db/index");
@@ -18,6 +19,8 @@ app.all("/*", (req, res, next) => {
   );
   next();
 });
+
+routes.inscribeRoutes(app);
 
 // Init Sequelize
 db.sequelize.sync().then(() => {

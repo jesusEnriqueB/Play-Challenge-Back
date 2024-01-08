@@ -18,6 +18,5 @@ module.exports = (sequelize, Sequelize) => {
     },
     { timestamps: true }
   );
-
   return User;
 };
