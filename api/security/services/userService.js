@@ -13,6 +13,24 @@ class UserService {
       throw new Error("Error on get user by email");
     }
   }
+
+  async getAllUsers(page, limit) {
+    try {
+      const offset = (page - 1) * limit;
+
+      const users = await User.findAll({
+        offset,
+        limit,
+      });
+
+      const totalCount = await User.count();
+
+      return { users, totalCount };
+    } catch (error) {
+      throw new Error("Error on get all users");
+    }
+  }
+
   async createUser(email, password, fullName) {
     const existUser = await this.getUserByEmail(email);
     if (existUser) {
@@ -37,10 +55,21 @@ class UserService {
       throw new Error("Invalid or expired reset token");
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await User.update(
-      { password: hashedPassword },
-      { where: { id: userId } }
-    );
+    await User.update({ password: hashedPassword }, { where: { id: userId } });
+  }
+
+  async deleteUserByEmail(email) {
+    try {
+      const user = await this.getUserByEmail(email);
+
+      if (!user) {
+        throw new Error("User not found");
+      }
+
+      await User.destroy({ where: { email } });
+    } catch (error) {
+      throw new Error("Error deleting user by email");
+    }
   }
 }
 
