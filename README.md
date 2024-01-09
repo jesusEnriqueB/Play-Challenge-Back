@@ -1,4 +1,4 @@
-# Playload-Challenge BACK
+# Play-Challenge BACK
 
 Use Node v20.10.0
 
@@ -19,10 +19,10 @@ Use Node v20.10.0
 
 https://playload.azurewebsites.net/
 
-# Playload-Challenge FRONT
+# Play-Challenge FRONT
 
 Use Node v20.10.0
 
 Git url:
-https://github.com/jesusEnriqueB/Playload-Challenge-Front
+https://github.com/jesusEnriqueB/Play-Challenge-Front
 
