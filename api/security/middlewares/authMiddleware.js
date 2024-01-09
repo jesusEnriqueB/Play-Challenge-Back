@@ -1,5 +1,12 @@
 const jwt = require("jsonwebtoken");
 
+/**
+ * Verify that token provided on login flow is correct.
+ *
+ * @param req - request.
+ * @param res - response.
+ * @param next - next action.
+ */
 const verifyAccessToken = (req, res, next) => {
   const token =
     req.headers.authorization && req.headers.authorization.split(" ")[1];
@@ -17,6 +24,13 @@ const verifyAccessToken = (req, res, next) => {
   }
 };
 
+/**
+ * Verify that token provided on reset password flow is correct.
+ *
+ * @param req - request.
+ * @param res - response.
+ * @param next - next action.
+ */
 const verifyResetPasswordToken = (req, res, next) => {
   const token =
     req.headers.authorization && req.headers.authorization.split(" ")[1];
@@ -30,6 +44,7 @@ const verifyResetPasswordToken = (req, res, next) => {
     req.authUser = decoded;
     next();
   } catch (error) {
+    console.log(error);
     return res.status(401).json({ error: "Invalid or expired Token" });
   }
 };
