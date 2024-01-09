@@ -3,6 +3,7 @@ const routes = require("./api/routes");
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("./api/db/index");
+const cors = require("cors");
 
 const app = express();
 const port = process.env.PORT || 3006;
@@ -10,6 +11,7 @@ const port = process.env.PORT || 3006;
 app.use(bodyParser.json());
 
 // CORS
+app.use(cors())
 app.all("/*", (req, res, next) => {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
